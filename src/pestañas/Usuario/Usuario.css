@@ -1,0 +1,32 @@
+.containerUsuario{
+    background-color: rgb(247, 248, 253);
+    padding: 0.4rem;
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.1fr;
+    grid-template-areas: "barraUsuario" "caracteristicasUsuario";
+    grid-gap: 0.2rem;
+}
+
+.barraUsuario{
+    min-height: 10vh;
+    background-color: green;
+    grid-area: barraUsuario;
+}
+
+.caracteristicasUsuario{
+    display: inline-block;
+    padding-top: 5vh;
+    padding-left: 10vh;
+    background-color: white;
+    grid-area: caracteristicasUsuario;
+}
+
+.divImagen{
+    display: inline-block;
+    margin: 20px;
+    width: 50vh;
+    height: 50vh;
+    background-color:wheat;
+}
