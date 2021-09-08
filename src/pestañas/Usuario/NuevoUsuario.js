@@ -17,7 +17,7 @@ function NuevoUsuario(props){
     const classes = useStyles();
     return(
         <div >
-                <Grid container direction="row" justifyContent="space-evenly" alignItems="center" className={classes.root}   style={{backgroundColor:"yellow"}}>
+                <Grid container direction="row" justifyContent="space-evenly" alignItems="center" className={classes.root}   style={{backgroundColor:"#fff176"}}>
                     <Grid item xs={12} sm={6}>
                         <Box ml="15%" mt="5%" textAlign="center" boxShadow={3} bgcolor="white" border={2} borderRadius={16} borderColor="white" p={{xs:2, sm:3, md:5}}>
                             <label textAlign="center" id="label1"> Label pal logo</label>

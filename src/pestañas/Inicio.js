@@ -23,9 +23,9 @@ function Inicio(props){
     const classes = useStyles();
     return(
         <div>
-                <Grid container direction="row" justifyContent="space-evenly" alignItems="center" className={classes.root}   style={{backgroundColor:"yellow"}}>
-                    <Grid item xs={12} sm={6} >
-                        <Box ml="15%" mt="5%" textAlign="center" boxShadow={3} bgcolor="white" border={2} borderRadius={16} borderColor="white" p={{xs:2, sm:3, md:5}}>
+            <Grid container direction="row" justifyContent="space-evenly" alignItems="center" className={classes.root}   style={{backgroundColor:"#fff176"}}>
+                <Grid item xs={12} sm={6} >
+                    <Box ml="15%" mt="5%" textAlign="center" boxShadow={3} bgcolor="white" border={2} borderRadius={16} borderColor="white" p={{xs:2, sm:3, md:5}} bgcolor="white">
                         <label id="label1"> Label pal logo</label>
                         <br></br><br></br>
                         <label id="label2"> Te damos la bienvenida</label>
@@ -46,13 +46,11 @@ function Inicio(props){
                             <Button align="center" size="large" variant="outlined" color="primary">Registrarse</Button>
                         </Link>
                         <br></br><br></br>
-                        </Box>
-                    </Grid>
-                    <Grid item xs={0} sm={4} >
-                        <img mt={"20%"} width={300} height={300} src="/imagenes/rock.jpg" alt=""/>
-                    </Grid>
+                    </Box>
                 </Grid>
-            
+                <Grid item xs={0} sm={4} >
+                    <img mt={"20%"} width={300} height={300} src="/imagenes/rock.jpg" alt=""/>                    </Grid>
+            </Grid>
         </div>
 
     );
