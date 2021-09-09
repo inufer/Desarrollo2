@@ -39,7 +39,7 @@ function Admin(props){
     
         return(
             <div>
-                <Grid container direction="row"  className={classes.root}  style={{backgroundColor:"gray"}}>
+                <Grid container direction="row"  className={classes.root}  style={{backgroundColor:"#37474f"}}>
                     <Grid item xs={12}>
                         <AppBar className={classes.appbar} position="static">
                             <Toolbar>
@@ -48,7 +48,9 @@ function Admin(props){
                                 <Typography variant="h6" className={classes.title}>
                                 Pal logo
                                 </Typography>
-                                <Button color="black">Perfil</Button>
+                                <Link to="/Perfil">
+                                    <Button color="black">Perfil</Button>
+                                </Link>
                                 <Link to="/">
                                     <Button color="black">Salir</Button>
                                 </Link>
