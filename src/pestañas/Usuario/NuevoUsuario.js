@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
 function NuevoUsuario(props){
     const classes = useStyles();
     return(
-        <div >
+        <div>
                 <Grid container direction="row" justifyContent="space-evenly" alignItems="center" className={classes.root}   style={{backgroundColor:"#fff176"}}>
                     <Grid item xs={12} sm={6}>
                         <Box ml="15%" mt="5%" textAlign="center" boxShadow={3} bgcolor="white" border={2} borderRadius={16} borderColor="white" p={{xs:2, sm:3, md:5}}>
@@ -24,33 +24,33 @@ function NuevoUsuario(props){
                             <br></br><br></br>
                             <label id="label2"> Te damos la bienvenida</label>
                             <br></br><br></br><br></br><br></br>
-                            <label textAlign="left" id="label1"> Nombre </label>
+                            <label textAlign="left" id="label1"> Nombres </label>
                             <br></br><br></br>
-                            <TextField  fullWidth id="txt-usuario" label="Nombre" variant="filled" />
+                            <TextField  fullWidth id="txtNombreRegristro" label="Nombre" variant="filled" />
                             <br></br><br></br>
-                            <label textAlign="left" id="label1"> Apellido </label>
+                            <label textAlign="left" id="label1"> Apellidos </label>
                             <br></br><br></br>
-                            <TextField  fullWidth id="txt-usuario" label="Apellido" variant="filled" />
+                            <TextField  fullWidth id="txtApellidosRegistro" label="Apellido" variant="filled" />
                             <br></br><br></br>
                             <label textAlign="left" id="label1"> Cedula </label>
                             <br></br><br></br>
-                            <TextField  fullWidth id="txt-usuario" label="Cedula" variant="filled" />
+                            <TextField  fullWidth id="txtCedulaRegistro" label="Cedula" variant="filled" />
                             <br></br><br></br>
                             <label textAlign="left" id="label1"> Edad </label>
                             <br></br><br></br>
-                            <TextField  fullWidth id="txt-usuario" label="Edad" variant="filled" />
+                            <TextField  fullWidth id="txtEdadRegistro" label="Edad" variant="filled" />
                             <br></br><br></br>
                             <label textAlign="left" id="label1"> Correo Electronico </label>
                             <br></br><br></br>
-                            <TextField  fullWidth id="txt-usuario" label="Usuario" variant="filled" />
+                            <TextField  fullWidth id="txtCorreoRegistro" label="Usuario" variant="filled" />
                             <br></br><br></br>
                             <label textAlign="left" id="label1"> Nick </label>
                             <br></br><br></br>
-                            <TextField  fullWidth id="txt-usuario" label="Usuario" variant="filled" />
+                            <TextField  fullWidth id="txtNickRegistro" label="Usuario" variant="filled" />
                             <br></br><br></br>
                             <label textAlign="left" id="label1"> Contraseña </label>
                             <br></br><br></br>
-                            <TextField  fullWidth id="txt-usuario" label="Usuario" variant="filled" />
+                            <TextField  fullWidth id="txtContraseñaRegistro" label="Usuario" variant="filled" />
                             <br></br><br></br>
                             <Link to="/">
                                 <Button align="center" size="large" variant="outlined" color="primary">Registrarse</Button>
