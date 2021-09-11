@@ -1,60 +1,79 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
-import {Box, FormControlLabel, Grid, TextField} from '@material-ui/core';
-import {makeStyles} from '@material-ui/core/styles';
-import { blue } from '@material-ui/core/colors';
+
+import { TextField } from '@material-ui/core';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../assets/css/form.css';
+
+import logoColor from '../assets/images/logos_choclo_color.png'
+import choclo from '../assets/images/imagen_logo_sintexto.png'
 
 
-const useStyles = makeStyles((theme) => ({
-    root:{
-        minHeight: '100vh'
-    },
-    fondoPresentacion: {
-        minHeight: '100vh',
-        backgroundImage: `url(${process.env.PUBLIC_URL + '/imagenes/volley.jpg'})`,
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover'
+
+class Inicio extends React.Component {
+
+    state = {
+        emailUsuario: '',
+        contraseñaUsuario: '',
+
     }
-}));
 
-function Inicio(props){
-    const classes = useStyles();
-    return(
-        <div>
-            <Grid container direction="row" justifyContent="space-evenly" alignItems="center" className={classes.root}   style={{backgroundColor:"#fff176"}}>
-                <Grid item xs={12} sm={6} >
-                    <Box ml="15%" mt="5%" textAlign="center" boxShadow={3} bgcolor="white" border={2} borderRadius={16} borderColor="white" p={{xs:2, sm:3, md:5}} bgcolor="white">
-                        <label id="label1"> Label pal logo</label>
-                        <br></br><br></br>
-                        <label id="label2"> Te damos la bienvenida</label>
-                        <br></br><br></br><br></br><br></br>
-                        <label id="label1"> Nombre</label>
-                        <br></br><br></br>
-                        <TextField fullWidth id="txt-usuario" label="Usuario" variant="filled" />
-                        <br></br><br></br>
-                        <label id="label1"> Contraseña</label>
-                        <br></br><br></br>
-                        <TextField fullWidth id="txt-contraseña" label="Contraseña" variant="filled" />
-                        <br></br><br></br><br></br><br></br>
+    handleChange = e =>{
+        this.setState ({
+           [e.target.name] : e.target.value,
+            
+        });  
+             
+    }
+
+    handleClick = e =>{
+        console.log('hiciste click')
+    } 
+
+    handleSubmit = e =>{
+        e.preventDefault();
+        console.log('Se hizo submit')
+    }
+
+
+    render(){
+        return (
+            <div className="row">
+
+                <div className=" col-12 col-sm-10 col-md-8 NuevoUsuario__container">
+                    <div className="NuevoUsuario__container-img"><img src={logoColor} /></div>
+                    <h1>Te damos la bienvenida</h1>
+                    <form onSubmit={this.handleSubmit} className="text-center">
+                        
+                        <div className="NuevoUsuario__container-form-group">
+                            <label>Email</label>
+                            <TextField fullWidth name="emailUsuario" type="email" onChange={this.handleChange} value ={this.state.emailUsuario}  variant="filled" />
+                        </div>
+                        
+                        <div className="NuevoUsuario__container-form-group">
+                            <label>Contraseña</label>
+                            <TextField fullWidth name="contraseñaUsuario" onChange={this.handleChange} value ={this.state.contraseñaUsuario} variant="filled" />
+                        </div>
+                        
                         <Link to="/Admin">
-                            <Button align="center" size="large" variant="outlined" color="primary">Ingresar</Button>
+                            <button className="NuevoUsuario__form-button align-self-end" onClick={this.handleClick} >Iniciar sesión</button>
                         </Link>
-                        <br></br><br></br>
                         <Link to="NuevoUsuario">
-                            <Button align="center" size="large" variant="outlined" color="primary">Registrarse</Button>
+                            <button className="NuevoUsuario__form-button mybutton-secundary align-self-end">Registrarse</button>
                         </Link>
-                        <br></br><br></br>
-                    </Box>
-                </Grid>
-                <Grid item xs={0} sm={4} >
-                    <img mt={"20%"} width={300} height={300} src="/imagenes/rock.jpg" alt=""/>                    </Grid>
-            </Grid>
-        </div>
+                        
 
-    );
+                    </form>
+                </div>
+                <div className="d-none d-md-flex col-4 offset-md-1 NuevoUsuario__containerChoclo">
+                    <img className="NuevoUsuario__containerChoclo-img align-self-center" src={choclo} alt="choclo" />
+                </div>
+
+            </div>
+
+        );
+    }
 }
 
-
 export default Inicio;
+

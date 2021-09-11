@@ -1,0 +1,67 @@
+:root {
+  --main-color: ;
+  --background-login: rgba(236, 214, 98, 0.68);
+  --morado: #3e215d;
+  --verde: #5d8233;
+  --azul: #284e78;
+  --amarillo: #ecd662;
+  background: var(--background-login);
+}
+
+body {
+  background: var(--background-login) !important;
+  font-size: 20px;
+}
+h1 {
+  font-size: 30px;
+  text-align: center;
+  color: var(--morado);
+}
+label {
+  margin: 15px 0;
+  color: var(--morado);
+  text-align: left !important;
+}
+
+.NuevoUsuario__container {
+  background: #ffffff;
+  width: 600px;
+  border-radius: 20px;
+  padding: 35px;
+  box-shadow: 2px 4px 5px 2px rgb(0 0 0 / 20%);
+  margin: 40px;
+}
+.NuevoUsuario__container-form-group {
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+.NuevoUsuario__container-img {
+  width: 300px;
+  margin: 0 auto;
+}
+
+.NuevoUsuario__container-img img {
+  width: 100%;
+}
+
+.NuevoUsuario__form-button {
+  border-radius: 20px;
+  width: 300px;
+  height: 45px;
+  background: var(--morado);
+  color: white;
+  margin-top: 15px;
+  border: none;
+}
+
+.mybutton-secundary {
+  background: var(--verde) !important;
+}
+
+.NuevoUsuario__containerChoclo {
+}
+
+.NuevoUsuario__containerChoclo-img {
+  height: 600px;
+}
