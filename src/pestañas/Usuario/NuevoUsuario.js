@@ -1,5 +1,4 @@
 import React from 'react';
-import './NuevoUsuario.css';
 
 import { TextField } from '@material-ui/core';
 import 'bootstrap/dist/css/bootstrap.min.css';

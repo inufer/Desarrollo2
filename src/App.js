@@ -1,5 +1,5 @@
 //27-08-2021 
-import './App.css';
+import '../../assets/css/App.css';
 import Inicio from './pestañas/Inicio'
 import Admin from './pestañas/Administrador/Admin'
 //import Note from './pestañas/Administrador/Note'
