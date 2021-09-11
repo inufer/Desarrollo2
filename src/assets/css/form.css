@@ -33,6 +33,7 @@ label {
 }
 .NuevoUsuario__container-form-group {
   text-align: left;
+  margin-bottom: 5px;
 }
 
 .NuevoUsuario__container-img {
