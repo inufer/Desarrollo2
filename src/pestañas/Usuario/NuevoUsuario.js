@@ -1,80 +1,87 @@
 import React from 'react';
 import './NuevoUsuario.css';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
-import { Box, FormControlLabel, Grid, TextField } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { TextField } from '@material-ui/core';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../../assets/css/form.css';
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        minHeight: '100vh'
-    },
-}));
-
-
-function NuevoUsuario(props, handleChange) {
+import logoColor from '../../assets/images/logos_choclo_color.png'
+import choclo from '../../assets/images/imagen_logo_sintexto.png'
 
 
 
-    const classes = useStyles();
+class NuevoUsuario extends React.Component {
 
-    let contador = 0;
+    state = {
+        nombreUsuario: '',
+        apellidoUsuario: '',
+        cedulaUsuario: '',
+        emailUsuario: '',
+        contraseñaUsuario: '',
 
-    let miUsuario = {
-        id: contador,
-        nombre: '',
-        apellido: '',
-        cedula: '',
-        edad: '',
-        email: '',
-        contraseña: ''
-    };
+    }
 
+    handleChange = e =>{
+        this.setState ({
+           [e.target.name] : e.target.value,
+            
+        });  
+             
+    }
 
+    handleClick = e =>{
+        console.log('hiciste click')
+    } 
 
-
-    return (
-        <div >
-            <Grid container direction="row" justifyContent="space-evenly" alignItems="center" className={classes.root} style={{ backgroundColor: "#fff176" }}>
-                <Grid item xs={12} sm={6}>
-                    <Box ml="15%" mt="5%" textAlign="center" boxShadow={3} bgcolor="white" border={2} borderRadius={16} borderColor="white" p={{ xs: 2, sm: 3, md: 5 }}>
-
-                        <label textAlign="center" id="label1"> Label pal logo</label>
-
-                        <label id="label2"> Te damos la bienvenida</label>
-
-                        <label textAlign="left" for="nombreUsuario" id="labelNombre"> Nombre </label>
-                        <TextField fullWidth id="nombreUsuario" label="" variant="filled" />
-
-                        <label textAlign="left" for="apellidoUsuario" id="labelApellido"> Apellido </label>
-                        <TextField fullWidth id="apellidoUsuario" label="" variant="filled" />
-
-                        <label textAlign="left" for="cedulaUsuario" id="labelCedula"> Cédula </label>
-                        <TextField fullWidth id="cedulaUsuario" label="" variant="filled" />
-
-                        <label textAlign="left" for="edadUsuario" id="labelEdad"> Edad </label>
-                        <TextField fullWidth id="edadUsuario" label="" variant="filled" />
-
-                        <label textAlign="left" for="emailUsuario" id="labelEmail"> Correo Electronico </label>
-                        <TextField fullWidth id="emailUsuario" label="" variant="filled" />
-
-                        <label textAlign="left" for="contraseñaUsuario" id="labelContraseña"> Contraseña </label>
-                        <TextField fullWidth id="contraseñaUsuario" label="" variant="filled" />
-
-                        <Button align="center" size="large" variant="outlined" color="primary" onClick={() => { miUsuario.nombre = document.getElementById('nombreUsuario').value; console.log(miUsuario) }}>Registrarse</Button>
+    handleSubmit = e =>{
+        e.preventDefault();
+        console.log('Se hizo submit')
+    }
 
 
-                    </Box>
-                </Grid>
-                <Grid item xs={0} sm={4} >
-                    <img mt={"20%"} width={300} height={300} src="/imagenes/rock.jpg" alt="" />
-                </Grid>
-            </Grid>
+    render(){
+        return (
+            <div className="row">
 
-        </div>
+                <div className=" col-12 col-sm-10 col-md-8 NuevoUsuario__container">
+                    <div className="NuevoUsuario__container-img"><img src={logoColor} /></div>
+                    <h1>Te damos la bienvenida</h1>
+                    <form onSubmit={this.handleSubmit} className="text-center">
 
-    );
+                        <div className="NuevoUsuario__container-form-group">
+                             <label>Nombre</label>
+                             <TextField fullWidth name="nombreUsuario" onChange={this.handleChange} value ={this.state.nombreUsuario} variant="filled" />
+                        </div>
+                        <div className="NuevoUsuario__container-form-group">
+                            <label>Apellido</label>
+                            <TextField fullWidth name="apellidoUsuario" onChange={this.handleChange} value ={this.state.apellidoUsuario} variant="filled" />
+                        </div>
+                        <div className="NuevoUsuario__container-form-group">
+                            <label>Cédula</label>
+                            <TextField fullWidth name="cedulaUsuario" onChange={this.handleChange} value ={this.state.cedulaUsuario} variant="filled" />
+                        </div>
+                        
+                        <div className="NuevoUsuario__container-form-group">
+                            <label>Email</label>
+                            <TextField fullWidth name="emailUsuario" type="email" onChange={this.handleChange} value ={this.state.emailUsuario}  variant="filled" />
+                        </div>
+                        
+                        <div className="NuevoUsuario__container-form-group">
+                            <label>Contraseña</label>
+                            <TextField fullWidth name="contraseñaUsuario" onChange={this.handleChange} value ={this.state.contraseñaUsuario} variant="filled" />
+                        </div>
+                        <button className="NuevoUsuario__form-button align-self-end" onClick={this.handleClick} >Registrarse</button>
+
+
+                    </form>
+                </div>
+                <div className="d-none d-md-flex col-4 offset-md-1 NuevoUsuario__containerChoclo">
+                    <img className="NuevoUsuario__containerChoclo-img align-self-center" src={choclo} alt="choclo" />
+                </div>
+
+            </div>
+
+        );
+    }
 }
 
 export default NuevoUsuario;
