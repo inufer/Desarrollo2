@@ -1,5 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import Admin from './Administrador/Admin'
+import Usuario from './Usuario/Usuario';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import {Box, FormControlLabel, Grid, TextField} from '@material-ui/core';
@@ -21,6 +23,23 @@ const useStyles = makeStyles((theme) => ({
 
 function Inicio(props){
     const classes = useStyles();
+
+    const history = useHistory();
+
+    const logearse = () =>
+    {
+        let variable = 1
+
+        if (variable == 1)
+        {
+            history.push({pathname: "/Admin"})
+        }
+        else
+        {
+            history.push({pathname: "/Usuario"})
+
+        }
+    }
     return(
         <div>
             <Grid container direction="row" justifyContent="space-evenly" alignItems="center" className={classes.root}   style={{backgroundColor:"#fff176"}}>
@@ -38,9 +57,7 @@ function Inicio(props){
                         <br></br><br></br>
                         <TextField fullWidth id="txt-contraseña" label="Contraseña" variant="filled" />
                         <br></br><br></br><br></br><br></br>
-                        <Link to="/Admin">
-                            <Button align="center" size="large" variant="outlined" color="primary">Ingresar</Button>
-                        </Link>
+                        <Button onClick={logearse} align="center" size="large" variant="outlined" color="primary">Ingresar</Button>
                         <br></br><br></br>
                         <Link to="NuevoUsuario">
                             <Button align="center" size="large" variant="outlined" color="primary">Registrarse</Button>

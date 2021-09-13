@@ -47,9 +47,20 @@ const useStyles = makeStyles((theme) => ({
         },
 }));
 
+
 function Perfil(props){
     const classes = useStyles();
 
+    let variable = true
+    let adminONo
+    if (variable)
+    {
+        adminONo = "Admin"
+    }
+    else
+    {
+        adminONo = "Usuario"
+    }
     return(
         <div >
             <Grid container direction="row"  className={classes.root}   style={{backgroundColor:"#37474f"}}>
@@ -143,7 +154,7 @@ function Perfil(props){
 
                             <Grid Item xs={12} directio="row">
                                 <Box mr="5%" ml="5%" mt="5%">
-                                    <Link to="/">
+                                    <Link to={"/"+adminONo}>
                                         <Button align="center" size="large" variant="outlined" color="primary">Confirmar Cambios</Button>
                                     </Link>
                                 </Box>
