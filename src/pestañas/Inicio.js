@@ -52,7 +52,7 @@ class Inicio extends React.Component {
                         
                         <div className="NuevoUsuario__container-form-group">
                             <label>Contraseña</label>
-                            <TextField fullWidth name="contraseñaUsuario" onChange={this.handleChange} value ={this.state.contraseñaUsuario} variant="filled" />
+                            <TextField fullWidth type="password" name="contraseñaUsuario" onChange={this.handleChange} value ={this.state.contraseñaUsuario} variant="filled" />
                         </div>
                         
                         <Link to="/Admin">

@@ -32,10 +32,31 @@ class NuevoUsuario extends React.Component {
         console.log('hiciste click')
     } 
 
-    handleSubmit = e =>{
+    handleSubmit = async e =>{
         e.preventDefault();
-        console.log('Se hizo submit')
+       // console.log('Se hizo submit')
+        console.log(this.state);
+
+        const BASE_URL = 'http://localhost:5500';
+
+        fetch(BASE_URL + '/user', {
+           method: 'POST', // or 'PUT'
+           //mode: 'no-cors',
+           body: JSON.stringify(this.state), // data can be `string` or {object}!
+           headers:{
+               'Content-Type': 'application/json',
+               'Accept': 'application/json',
+           }
+         })
+         .then(res => res.json())
+         .catch(error => console.error('Error:', error))
+         .then(response => console.log('Success:', response));
+
+
+
     }
+
+
 
 
     render(){
@@ -67,7 +88,7 @@ class NuevoUsuario extends React.Component {
                         
                         <div className="NuevoUsuario__container-form-group">
                             <label>Contraseña</label>
-                            <TextField fullWidth name="contraseñaUsuario" onChange={this.handleChange} value ={this.state.contraseñaUsuario} variant="filled" />
+                            <TextField fullWidth type="password" name="contraseñaUsuario" onChange={this.handleChange} value ={this.state.contraseñaUsuario} variant="filled" />
                         </div>
                         <button className="NuevoUsuario__form-button align-self-end" onClick={this.handleClick} >Registrarse</button>
 

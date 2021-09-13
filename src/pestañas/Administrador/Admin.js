@@ -6,7 +6,7 @@ import {makeStyles} from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { AppBar, Grid, IconButton, Toolbar, Box } from '@material-ui/core';
-import InfoEvento from './../Usuario/InfoEvento';
+import InfoEvento from '../Usuario/InfoEvento';
 import { unstable_renderSubtreeIntoContainer } from 'react-dom';
 
 const useStyles = makeStyles((theme) => ({
