@@ -1,14 +1,11 @@
+import { shallow } from 'enzyme'
 
-import NuevoUsuario from './../Usuario/NuevoUsuario';
+import NuevoUsuario from '../Usuario/NuevoUsuario';
 
-
-
-const getUsuariobaseById = (cedulaUsuario) => NuevoUsuario.state( (User) => NuevoUsuario.state.cedulaUsuario === cedulaUsuario);
-
-export const getUsuarioById = (cedulaUsuario) => {
+export const getUsuarioById = (cedulaUsuario, state) => {
     return new Promise( (resolve, reject) => {
        setTimeout(() => {
-           const pers = getUsuariobaseById(cedulaUsuario)
+           const pers = state.find( (User) => User.cedulaUsuario === cedulaUsuario)
            if(pers){
                resolve(pers)
            }else{

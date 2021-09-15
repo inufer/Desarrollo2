@@ -8,18 +8,21 @@ import '../../assets/css/form.css';
 import logoColor from '../../assets/images/logos_choclo_color.png'
 import choclo from '../../assets/images/imagen_logo_sintexto.png'
 
-
+import {getUsuarioById} from '../router/consultabd'
 
 class NuevoUsuario extends React.Component {
 
-    state = {
+    state = [{
         nombreUsuario: '',
         apellidoUsuario: '',
-        cedulaUsuario: '',
+        cedulaUsuario: 1324,
         emailUsuario: '',
         contrasenaUsuario: '',
 
-    }
+    }]
+
+    
+
 
     handleChange = e =>{
         this.setState ({
@@ -77,7 +80,7 @@ class NuevoUsuario extends React.Component {
     render(){
         return (
             <div className="row">
-
+                {console.log(getUsuarioById(1324,this.state))}
                 <div className=" col-12 col-sm-10 col-md-8 NuevoUsuario__container">
                     <div className="NuevoUsuario__container-img"><img src={logoColor} /></div>
                     <h1>Te damos la bienvenida</h1>
