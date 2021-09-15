@@ -1,4 +1,5 @@
 import React from 'react';
+import Swal from 'sweetalert2'; 
 
 import { TextField } from '@material-ui/core';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -16,7 +17,7 @@ class NuevoUsuario extends React.Component {
         apellidoUsuario: '',
         cedulaUsuario: '',
         emailUsuario: '',
-        contraseñaUsuario: '',
+        contrasenaUsuario: '',
 
     }
 
@@ -39,7 +40,7 @@ class NuevoUsuario extends React.Component {
 
         const BASE_URL = 'http://localhost:5500';
 
-        fetch(BASE_URL + '/user', {
+        fetch(BASE_URL + '/users', {
            method: 'POST', // or 'PUT'
            //mode: 'no-cors',
            body: JSON.stringify(this.state), // data can be `string` or {object}!
@@ -50,12 +51,26 @@ class NuevoUsuario extends React.Component {
          })
          .then(res => res.json())
          .catch(error => console.error('Error:', error))
-         .then(response => console.log('Success:', response));
+         .then(response => {
+             if (response.sucessfully){
+                Swal.fire(
+                    'Usuario creado',
+                    'Usuario creado exitosamente',
+                    'success'
+                  )
+             }else {
+                Swal.fire(
+                    'Error',
+                    'Se produjo un error inesperado',
+                    'warning'
+                  )
+
+             }
+         });
 
 
 
     }
-
 
 
 
@@ -88,7 +103,7 @@ class NuevoUsuario extends React.Component {
                         
                         <div className="NuevoUsuario__container-form-group">
                             <label>Contraseña</label>
-                            <TextField fullWidth type="password" name="contraseñaUsuario" onChange={this.handleChange} value ={this.state.contraseñaUsuario} variant="filled" />
+                            <TextField fullWidth type="password" name="contrasenaUsuario" onChange={this.handleChange} value ={this.state.contrasenaUsuario} variant="filled" />
                         </div>
                         <button className="NuevoUsuario__form-button align-self-end" onClick={this.handleClick} >Registrarse</button>
 
