@@ -1,15 +1,29 @@
 const express = require('express');
 const { Pool } = require('pg');
 
-const pool = new Pool({
+
+
+
+const conexionProduccion = {
     host: 'chunee.db.elephantsql.com',
     user: 'yemaaibm',
     password: 'cVPVTZjKvtS4m_vq7nowA3mSqLuICfmN',
     port: 5432,
     database: 'yemaaibm'
-});
-// import express from express;
-// const bodyParser = require('body-parser');
+};
+
+const conexionLocal = {
+    host: 'localhost',
+    user: 'postgres',
+    password: '',
+    port: 5432,
+    database: 'EventoChoclo'
+};
+
+//Se hace la conexion a la base de datos
+
+const pool = new Pool(conexionLocal);
+
 const router = express.Router();
 
 var app = express();
@@ -185,6 +199,52 @@ router.delete('/users/:id',async function(req,res){
         });
     }
 });
+
+//ingresar (inicio de sesión)
+
+router.post('/user/authenticate', async function (req, res){
+    const emailUsuario= req.body.emailUsuario;
+    const passUsuario = req.body.passUsuario;
+
+    // try{
+        const user = await pool.query(`SELECT * FROM users WHERE user_email='${emailUsuario}'`)
+        const pass_bd = user.rows[0].user_pass;
+
+        console.log(user.rows[0].user_pass )
+        console.log(passUsuario)
+    
+        if(passUsuario == pass_bd){
+            res.status(200).json({
+                sucessfully: true,
+                message: "Usuario autenticado exitosamente",
+                perfil: user.rows[0].user_unique,
+                token: Buffer.from(user.rows[0].user_email).toString('base64')
+                
+            })
+        } else{
+            res.status(200).json({
+                sucessfully: false,
+                message: "No se pudo autenticar"
+                
+            })
+            
+        }    
+    // } catch(error){
+    //     res.status(500).json({
+    //         sucessfully: false,
+    //         message: "Error",
+    //     })
+    // }
+
+});
+
+// async function authenticate( email, password ) {
+//     const user = await pool.query(`SELECT * FROM users WHERE user_email=${email}`)
+//     console.log(user);
+//     if(user.user_pass == password){
+//         console.log("Ingreso satisfactorio");
+//     }
+// }
 
 
 app.listen(5500);

@@ -32,6 +32,13 @@ const useStyles = makeStyles((theme) => ({
 
 function Usuario(props){
     const classes = useStyles();
+
+    if(localStorage.getItem('profile')!=null){
+        if(localStorage.getItem('profile')==2){
+            window.location.href="/Admin";
+        }
+    }
+
     return(
         <div>
         <Grid container direction="row"  className={classes.root}  style={{backgroundColor:"#37474f"}}>

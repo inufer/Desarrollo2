@@ -1,5 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import {config} from './../config';
+
 
 import { TextField } from '@material-ui/core';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -12,11 +15,14 @@ import choclo from '../assets/images/imagen_logo_sintexto.png'
 
 class Inicio extends React.Component {
 
+    
     state = {
         emailUsuario: '',
-        contraseñaUsuario: '',
+        passUsuario: '',
 
     }
+
+    
 
     handleChange = e =>{
         this.setState ({
@@ -26,14 +32,30 @@ class Inicio extends React.Component {
              
     }
 
-    handleClick = e =>{
-        console.log('hiciste click')
-    } 
+    //CONEXIÓN PARA LOGUEARSE
 
     handleSubmit = e =>{
         e.preventDefault();
-        console.log('Se hizo submit')
+       
+        axios.post(config.URL_BACKEND + '/user/authenticate', 
+        {
+            emailUsuario: this.state.emailUsuario, 
+            passUsuario: this.state.passUsuario
+        }
+        )
+        .then(res => {
+            if(res.data.perfil ==2){
+                localStorage.setItem('profile',2)
+                window.location.href="/Admin";
+            } else {
+                localStorage.setItem('profile',1)
+                window.location.href="/Usuario";
+            }
+        })
+        
     }
+
+   
 
 
     render(){
@@ -52,17 +74,14 @@ class Inicio extends React.Component {
                         
                         <div className="NuevoUsuario__container-form-group">
                             <label>Contraseña</label>
-                            <TextField fullWidth type="password" name="contraseñaUsuario" onChange={this.handleChange} value ={this.state.contraseñaUsuario} variant="filled" />
+                            <TextField fullWidth type="password" name="passUsuario" onChange={this.handleChange} value ={this.state.passUsuario} variant="filled" />
                         </div>
                         
-                        <Link to="/Admin">
-                            <button className="NuevoUsuario__form-button align-self-end" onClick={this.handleClick} >Iniciar sesión</button>
-                        </Link>
-                        <Link to="NuevoUsuario">
-                            <button className="NuevoUsuario__form-button mybutton-secundary align-self-end">Registrarse</button>
-                        </Link>
+                            <button className="NuevoUsuario__form-button align-self-end" >Iniciar sesión</button>
                         
-
+                        <Link to="NuevoUsuario">
+                                <button className="NuevoUsuario__form-button mybutton-secundary align-self-end">Registrarse</button>
+                        </Link>
                     </form>
                 </div>
                 <div className="d-none d-md-flex col-4 offset-md-1 NuevoUsuario__containerChoclo">

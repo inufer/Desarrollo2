@@ -35,6 +35,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Admin(props){
+
+ //Simula que puede verificar los perfiles y el inicio de sesion
+
+    if(localStorage.getItem('profile')!=null){
+        if(localStorage.getItem('profile')==1){
+            window.location.href="/Usuario";
+        }
+    }
+
     const classes = useStyles();
     
         return(
