@@ -13,13 +13,13 @@ import { Component, Fragment } from 'react';
 import axios from 'axios';
 
 
-let url = 'http://localhost:5500';
+// let url = 'http://localhost:5500';
 
-if(localStorage.getItem('profile')!=null){
-    if(localStorage.getItem('profile')==1){
-        window.location.href="/Usuario";
-    }
-}
+// if(localStorage.getItem('profile')!=null){
+//     if(localStorage.getItem('profile')==1){
+//         window.location.href="/Usuario";
+//     }
+// }
 
 class Admin extends React.Component{
 
@@ -30,7 +30,6 @@ class Admin extends React.Component{
             datos:[]
         }
     }
-
 
 
     borrarRegistros=(id)=>{

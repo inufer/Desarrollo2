@@ -60,14 +60,20 @@ class Inicio extends React.Component {
         }
         )
         .then(res => {
-            if(res.data.perfil ==2){
-                localStorage.setItem('profile',2)
-                window.location.href="/Admin";
-            } else {
-                localStorage.setItem('profile',1)
-                window.location.href="/";
-            }
+            console.log(res)
+            if(res.data.sucessfully){
+                if(res.data.perfil ==2){
+                    localStorage.setItem('profile',2)
+                    window.location.href="/Admin";
+                } else if(res.data.perfil ==1){
+                    localStorage.setItem('profile',1)
+                    window.location.href="/Usuario";
+                }
+            }else{
+                alert(res.data.message);
+            } 
         })
+        .catch( error => {console.log(error)})
 
     }
 /*
@@ -145,9 +151,9 @@ class Inicio extends React.Component {
                             <TextField fullWidth type="password" name="passUsuario" onChange={this.handleChange} value ={this.state.passUsuario} variant="filled" />
                         </div>
                         
-                        <Link to={window.location.href}>
+                        {/* <Link to="/Usuario"> */}
                         <button className="NuevoUsuario__form-button align-self-end" >Iniciar sesión</button>
-                        </Link>
+                        {/* </Link> */}
 
                         <Link to={"NuevoUsuario"}>
                                 <button className="NuevoUsuario__form-button mybutton-secundary align-self-end">Registrarse</button>

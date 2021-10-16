@@ -6,11 +6,11 @@ import Button from '@material-ui/core/Button';
 import { AppBar, Grid, IconButton, Toolbar, Box } from '@material-ui/core';
 
 
-if(localStorage.getItem('profile')!=null){
-    if(localStorage.getItem('profile')==2){
-        window.location.href="/Admin";
-    }
-}
+// if(localStorage.getItem('profile')!=null){
+//     if(localStorage.getItem('profile')==2){
+//         window.location.href="/Admin";
+//     }
+// }
 
 
 class Usuario extends React.Component{
@@ -22,9 +22,6 @@ class Usuario extends React.Component{
             datos:[]
         }
     }
-    
-
-
 
     cargarDatos(){
         fetch("http://localhost/eventochoclo/eventos/")

@@ -1,9 +1,12 @@
 const express = require('express');
 const { Pool } = require('pg');
 
+const mysql = require('mysql');
 
 
 
+
+//Base de datos postgres
 const conexionProduccion = {
     host: 'chunee.db.elephantsql.com',
     user: 'yemaaibm',
@@ -12,10 +15,25 @@ const conexionProduccion = {
     database: 'yemaaibm'
 };
 
+const conexionMysql = {
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    port: 3306,
+    database: 'eventochoclo'
+};
 
 //Se hace la conexion a la base de datos
 
-const pool = new Pool(conexionProduccion);
+// const pool = new Pool(conexionProduccion);
+
+const pool = mysql.createPool(conexionMysql);
+pool.getConnection(function(err, conn){
+    console.log('conexion exitosa')
+    // conn.query("select * from users", function(err, rows) {
+    //      res.json(rows);
+    // });
+});
 
 const router = express.Router();
 
@@ -80,24 +98,44 @@ router.post('/users',async function(req,res){
         contrasenaUsuario,
         nombreUsuario,
         apellidoUsuario,
-        cedulaUsuario
+        // cedulaUsuario
     ];
-    // try{
-        const result = await pool.query(
-            'insert into users(user_email,user_pass,user_name,user_lastname,user_dni) values ($1,$2,$3,$4,$5)',
-            dataInsert
-        );
+
+    //LOGICA PARA MYSQL
+
+    pool.query('insert into users(user_email,user_pass,user_name,user_lastname, user_unique) values (?,?,?,?,1)',dataInsert, function(err, rows, fields) {
+        if (err) throw err;
+        console.log(rows);
+
         res.status(200).json({
             sucessfully: true,
             message: "Usuario creado exitosamente",
             user: dataInsert
         })
-    // }catch(error){
-    //     res.status(500).json({
-    //         sucessfully: false,
-    //         message: "Se produjo un error inesperado"
-    //     });
-    // }
+    });
+
+
+
+
+
+
+    //*****************LOGICA DE POSTGRES*************
+    // // try{
+    //     const result = await pool.query(
+    //         'insert into users(user_email,user_pass,user_name,user_lastname,user_dni) values ($1,$2,$3,$4,$5)',
+    //         dataInsert
+    //     );
+    //     res.status(200).json({
+    //         sucessfully: true,
+    //         message: "Usuario creado exitosamente",
+    //         user: dataInsert
+    //     })
+    // // }catch(error){
+    // //     res.status(500).json({
+    // //         sucessfully: false,
+    // //         message: "Se produjo un error inesperado"
+    // //     });
+    // // }
 });
 
 router.put('/users/:id',async function(req,res){
@@ -198,30 +236,96 @@ router.delete('/users/:id',async function(req,res){
 router.post('/user/authenticate', async function (req, res){
     const emailUsuario= req.body.emailUsuario;
     const passUsuario = req.body.passUsuario;
+    try{
+        pool.query(`SELECT * FROM users WHERE user_email='${emailUsuario}'`,function(err,rows){
+            console.log('result ',rows);
+            let user = rows[0];
+
+            if(passUsuario == user.user_pass){
+                res.status(200).json({
+                    sucessfully: true,
+                    message: "Usuario autenticado exitosamente",
+                    perfil: user.user_unique,
+                    token: Buffer.from(user.user_email).toString('base64')
+                    
+                })
+            }else{
+                res.status(200).json({
+                    sucessfully: false,
+                    message: "No se pudo autenticar"                
+                })
+            }
+        })
+    }catch(error){
+        res.status(500).json({
+            sucessfully: false,
+            message: "Error",
+        })
+    }
 
     // try{
-        const user = await pool.query(`SELECT * FROM users WHERE user_email='${emailUsuario}'`)
-        const pass_bd = user.rows[0].user_pass;
 
-        console.log(user.rows[0].user_pass )
-        console.log(passUsuario)
+        /* const user = await pool.query(`SELECT * FROM users WHERE user_email='${emailUsuario}'`, function(err, rows, fields) {
+            if (err) throw err;
+            console.log(passUsuario);
+            let user = rows[0];
+            return user;
+        });
+
+        console.log(user);
+        res.json({hola: "hola"}) */
+            /*const pass_bd = user.user_pass;
+
+            console.log(pass_bd);
+            if(passUsuario == pass_bd){
+                console.log(passUsuario);
+                res.status(200).json({
+                    sucessfully: true,
+                    message: "Usuario autenticado exitosamente",
+                    perfil: user.user_unique,
+                    token: Buffer.from(user.user_email).toString('base64')
+                    
+                })
+            } else{
+                console.log(9866);
+                return res.status(200).json({
+                    sucessfully: false,
+                    message: "No se pudo autenticar"
+                    
+                })
+            }    
+            // } catch(error){
+            //     res.status(500).json({
+            //         sucessfully: false,
+            //         message: "Error",
+            //     })
+            // }
+          });
+          */
+
+        // const user = await pool.query(`SELECT * FROM users WHERE user_email='${emailUsuario}'`)
+        // console.log(user)
+        // const pass_bd = user.rows[0].user_pass;
+
+        // console.log(user.rows[0].user_pass )
+        // console.log(passUsuario)
     
-        if(passUsuario == pass_bd){
-            res.status(200).json({
-                sucessfully: true,
-                message: "Usuario autenticado exitosamente",
-                perfil: user.rows[0].user_unique,
-                token: Buffer.from(user.rows[0].user_email).toString('base64')
+        // if(passUsuario == pass_bd){
+        //     res.status(200).json({
+        //         sucessfully: true,
+        //         message: "Usuario autenticado exitosamente",
+        //         perfil: user.rows[0].user_unique,
+        //         token: Buffer.from(user.rows[0].user_email).toString('base64')
                 
-            })
-        } else{
-            res.status(200).json({
-                sucessfully: false,
-                message: "No se pudo autenticar"
+        //     })
+        // } else{
+        //     res.status(200).json({
+        //         sucessfully: false,
+        //         message: "No se pudo autenticar"
                 
-            })
+        //     })
             
-        }    
+        // }    
     // } catch(error){
     //     res.status(500).json({
     //         sucessfully: false,

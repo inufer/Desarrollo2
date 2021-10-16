@@ -18,7 +18,7 @@ function App() {
     <Router>
       <div className="container">
         <Switch>
-          <Route path="/Usuario" exact>
+          <Route path="/" exact>
             <Inicio />
           </Route>
           <Route path="/Perfil" exact>
@@ -32,9 +32,11 @@ function App() {
           <Route path="/InfoEventoGrafico">
             <InfoEventoGrafico />
           </Route>
-          <Route path="/" component={Usuario} exact>
+          <Route path="/Usuario" exact>
+            <Usuario/>
           </Route>
-          <Route path="/NuevoUsuario" component={NuevoUsuario}>
+          <Route path="/NuevoUsuario" >
+            <NuevoUsuario/>
 
           </Route>
           <Route path="/InfoEvento">
