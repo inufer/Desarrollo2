@@ -47,23 +47,25 @@ const useStyles = makeStyles((theme) => ({
         },
 }));
 
-function Perfil(props){
-    const classes = useStyles();
 
+class Perfil extends React.Component{
+
+    render (){
     return(
         <div >
-            <Grid container direction="row"  className={classes.root}   style={{backgroundColor:"#37474f"}}>
+            <Grid container direction="row"     style={{backgroundColor:"#37474f"}}>
                 <Grid item xs={12}>
-                        <AppBar className={classes.appbar} position="static">
+                        
+                        <AppBar  position="static" style={{ background: '#fff176' }}>
                             <Toolbar>
-                                <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                                <IconButton edge="start"  color="inherit" aria-label="menu">
                                 </IconButton>
-                                <Typography variant="h6" className={classes.title}>
+                                <Typography variant="h6" component="div">
                                 Pal logo
                                 </Typography>
-                                <Button color="black">Perfil</Button>
+                                <Button color="black"  style={{marginLeft: "80%"}}>Perfil</Button>
                                 <Link to="/">
-                                    <Button color="black">Salir</Button>
+                                    <Button color="black"  >Salir</Button>
                                 </Link>
                             </Toolbar>
                         </AppBar>
@@ -82,9 +84,9 @@ function Perfil(props){
 
                             <Grid Item xs={12} md={6} direction="row">
                                 <Box mr="5%" ml="5%">
-                                    <label className={classes.labels} textAlign="left" id="label1"> Nombres </label>
+                                    <label  textAlign="left" id="label1"> Nombres </label>
                                     <br></br><br></br>
-                                    <TextField fullWidth className={classes.textField} id="txtNombresPerfil" label="Nombre" variant="filled" />
+                                    <TextField fullWidth  id="txtNombresPerfil" label="Nombre" variant="filled" />
                                     <br></br><br></br>
                                 </Box>
                             </Grid>
@@ -93,7 +95,7 @@ function Perfil(props){
                                 <Box mr="5%" ml="5%">
                                     <label textAlign="left" id="label1"> Apellidos </label>
                                     <br></br><br></br>
-                                    <TextField fullWidth className={classes.textField} id="txtApellidosPerfil" label="Apellido" variant="filled" />
+                                    <TextField fullWidth  id="txtApellidosPerfil" label="Apellido" variant="filled" />
                                     <br></br><br></br>
                                 </Box>
                             </Grid>
@@ -101,7 +103,7 @@ function Perfil(props){
                                 <Box mr="5%" ml="5%">
                                     <label textAlign="left" id="label1"> Cedula </label>
                                     <br></br><br></br>
-                                    <TextField  className={classes.textField} fullWidth id="txtCedulaPerfil" label="Cedula" variant="filled" />
+                                    <TextField   fullWidth id="txtCedulaPerfil" label="Cedula" variant="filled" />
                                     <br></br><br></br>
                                 </Box>
                             </Grid>
@@ -109,7 +111,7 @@ function Perfil(props){
                                 <Box mr="5%" ml="5%">
                                     <label textAlign="left" id="label1"> Edad </label>
                                     <br></br><br></br>
-                                    <TextField className={classes.textField} fullWidth id="txtNickPerfil" label="Usuario" variant="filled" />
+                                    <TextField  fullWidth id="txtNickPerfil" label="Usuario" variant="filled" />
                                     <br></br><br></br>
                                 </Box>
                             </Grid>
@@ -118,7 +120,7 @@ function Perfil(props){
                                 <Box mr="5%" ml="5%">
                                 <label textAlign="left" id="label1"> Correo Electronico </label>
                                     <br></br><br></br>
-                                    <TextField  className={classes.textField} fullWidth id="txtEdadPerfil" label="Edad" variant="filled" />
+                                    <TextField   fullWidth id="txtEdadPerfil" label="Edad" variant="filled" />
                                     <br></br><br></br>
                                 </Box>
                             </Grid>
@@ -127,7 +129,7 @@ function Perfil(props){
                                 <Box mr="5%" ml="5%">
                                 <label textAlign="left" id="label1"> Nick </label>
                                     <br></br><br></br>
-                                    <TextField  className={classes.textField} fullWidth id="txtEdadPerfil" label="Edad" variant="filled" />
+                                    <TextField  fullWidth id="txtEdadPerfil" label="Edad" variant="filled" />
                                     <br></br><br></br>
                                 </Box>
                             </Grid>
@@ -136,7 +138,7 @@ function Perfil(props){
                                 <Box mr="5%" ml="5%">
                                     <label textAlign="left" id="label1"> Contraseña </label>
                                     <br></br><br></br>
-                                    <TextField  className={classes.textField} fullWidth id="txtContraseñaPerfil" label="Usuario" variant="filled" />
+                                    <TextField   fullWidth id="txtContraseñaPerfil" label="Usuario" variant="filled" />
                                     <br></br><br></br>
                                 </Box>
                             </Grid>
@@ -154,6 +156,7 @@ function Perfil(props){
         </div>
 
     );
+    }
 }
 
 export default Perfil;

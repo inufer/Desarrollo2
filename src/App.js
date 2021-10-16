@@ -14,34 +14,34 @@ import InfoEvento from './pestañas/Usuario/InfoEvento';
 
 function App() {
   return (
+
     <Router>
       <div className="container">
         <Switch>
-          <Route path="/" exact>
-            <Inicio tittle="Eventos Choclo" name="Juan1" cargo="Administrador"/>
+          <Route path="/Usuario" exact>
+            <Inicio />
           </Route>
           <Route path="/Perfil" exact>
-            <Perfil tittle="Eventos Choclo" name="Juan1" cargo="Administrador"/>
+            <Perfil />
           </Route>
           <Route path="/Admin">
-            <Admin tittle="Eventos  Choclo" name="Juan1" cargo="Administrador"/>
+            <Admin />
           </Route>
-          <Route path="/EditarEvento">
-            <EditarEvento tittle="Eventos Choclo" name="Juan1" cargo="Administrador"/>
+          <Route path="/editarEvento/:id" component={EditarEvento}>
           </Route>
           <Route path="/InfoEventoGrafico">
-            <InfoEventoGrafico tittle="Eventos Choclo" name="Juan1" cargo="Administrador"/>
+            <InfoEventoGrafico />
           </Route>
-          <Route path="/Usuario">
-            <Usuario tittle="Eventos Choclo" name="Juan1" cargo="Administrador"/>
+          <Route path="/" component={Usuario} exact>
           </Route>
-          <Route path="/NuevoUsuario">
-            <NuevoUsuario tittle="Eventos Choclo" name="Juan1" cargo="Administrador"/>
+          <Route path="/NuevoUsuario" component={NuevoUsuario}>
+
           </Route>
           <Route path="/InfoEvento">
-            <InfoEvento tittle="Eventos Choclo" name="Juan1" cargo="Administrador"/>
+            <InfoEvento />
           </Route>
         </Switch>
+        
       </div>
     </Router>
   );

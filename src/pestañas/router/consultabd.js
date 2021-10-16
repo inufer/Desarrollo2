@@ -1,4 +1,4 @@
-import { shallow } from 'enzyme'
+/*import { shallow } from 'enzyme'
 
 import NuevoUsuario from '../Usuario/NuevoUsuario';
 
@@ -14,4 +14,4 @@ export const getUsuarioById = (cedulaUsuario, state) => {
        },2500)
     })
 } 
-
+*/

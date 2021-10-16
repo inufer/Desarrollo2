@@ -15,7 +15,7 @@ class NuevoUsuario extends React.Component {
     state = [{
         nombreUsuario: '',
         apellidoUsuario: '',
-        cedulaUsuario: 1324,
+        cedulaUsuario: '',
         emailUsuario: '',
         contrasenaUsuario: '',
 
@@ -80,7 +80,7 @@ class NuevoUsuario extends React.Component {
     render(){
         return (
             <div className="row">
-                {console.log(getUsuarioById(1324,this.state))}
+               
                 <div className=" col-12 col-sm-10 col-md-8 NuevoUsuario__container">
                     <div className="NuevoUsuario__container-img"><img src={logoColor} /></div>
                     <h1>Te damos la bienvenida</h1>
